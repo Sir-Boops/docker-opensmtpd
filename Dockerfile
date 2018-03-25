@@ -3,7 +3,7 @@ FROM alpine:3.7
 ENV SMTPD_VER="6.0.3p1"
 
 RUN addgroup -S _smtpd && \
-		adduser -S -G _smtpd _smtpd
+		adduser -S -G _smtpd _smtpq
 
 RUN apk -U add --virtual deps curl \
 		gcc g++ fts-dev \
@@ -20,4 +20,5 @@ RUN apk -U add --virtual deps curl \
 	make install && \
 	apk del --purge deps && \
 	apk add libevent libasr fts && \
+	mkdir -p /var/run && \
 	rm -rf ~/* && rm -rf /opt/opensmtpd/etc/
