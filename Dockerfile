@@ -16,6 +16,6 @@ RUN apk -U add --virtual deps curl \
 	make install && \
 	apk del --purge deps && \
 	apk add libevent libasr fts && \
-	rm -rf ~/* && rm -rf /opt/opensmtpd/etc/*
+	rm -rf ~/* && rm -rf /opt/opensmtpd/etc/
 
 RUN /opt/opensmtpd/sbin/smtpd -d
