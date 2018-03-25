@@ -2,6 +2,9 @@ FROM alpine:3.7
 
 ENV SMTPD_VER="6.0.3p1"
 
+RUN addgroup -S _smtpd && \
+		adduser -S -G _smtpd _smtpd
+
 RUN apk -U add --virtual deps curl \
 		gcc g++ fts-dev \
 		libasr-dev libressl-dev \
@@ -12,9 +15,6 @@ RUN apk -U add --virtual deps curl \
 	tar xf opensmtpd-$SMTPD_VER.tar.gz && \
 	cd ~/opensmtpd-$SMTPD_VER && \
 	./configure --prefix=/opt/opensmtpd \
-		--with-user-smtpd=root \
-		--with-user-queue=root \
-		--with-group-queue=root \
 		--with-path-queue=/opt/opensmtpd/queue && \
 	make -j$(nproc) && \
 	make install && \
