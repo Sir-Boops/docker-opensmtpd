@@ -3,7 +3,9 @@ FROM alpine:3.7
 ENV SMTPD_VER="6.0.3p1"
 
 RUN addgroup -S _smtpd && \
-		adduser -S -G _smtpd _smtpq
+		adduser -S -G _smtpd _smtpd && \
+		addgroup -S _smtpq && \
+		adduser -S -G _smtpq _smtpq
 
 RUN apk -U add --virtual deps curl \
 		gcc g++ fts-dev \
