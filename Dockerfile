@@ -11,7 +11,11 @@ RUN apk -U add --virtual deps curl \
 	curl --remote-name https://www.opensmtpd.org/archives/opensmtpd-$SMTPD_VER.tar.gz && \
 	tar xf opensmtpd-$SMTPD_VER.tar.gz && \
 	cd ~/opensmtpd-$SMTPD_VER && \
-	./configure --prefix=/opt/opensmtpd && \
+	./configure --prefix=/opt/opensmtpd \
+		--with-user-smtpd=root \
+		--with-user-queue=root \
+		--with-group-queue=root \
+		--with-path-queue=/opt/opensmtpd/queue && \
 	make -j$(nproc) && \
 	make install && \
 	apk del --purge deps && \
