@@ -1,6 +1,6 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
-ENV SMTPD_VER="6.0.3p1"
+ENV SMTPD_VER="6.4.1p2"
 
 RUN addgroup -S _smtpd && \
 	adduser -S -G _smtpd _smtpd && \
@@ -14,6 +14,7 @@ RUN apk -U add --virtual deps curl \
 		libasr-dev libressl-dev \
 		libevent-dev zlib-dev make \
 		bison && \
+	apk add libevent libasr fts  && \
 	cd ~ && \
 	curl --remote-name https://www.opensmtpd.org/archives/opensmtpd-$SMTPD_VER.tar.gz && \
 	tar xf opensmtpd-$SMTPD_VER.tar.gz && \
@@ -23,6 +24,5 @@ RUN apk -U add --virtual deps curl \
 	make -j$(nproc) && \
 	make install && \
 	apk del --purge deps && \
-	apk add libevent libasr fts && \
 	mkdir -p /var/run && \
 	rm -rf ~/* && rm -rf /opt/opensmtpd/etc/
