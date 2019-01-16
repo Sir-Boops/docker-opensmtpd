@@ -26,3 +26,5 @@ RUN apk -U add --virtual deps curl \
 	apk del --purge deps && \
 	mkdir -p /var/run && \
 	rm -rf ~/* && rm -rf /opt/opensmtpd/etc/
+
+CMD /opt/opensmtpd/sbin/smtpd -d
