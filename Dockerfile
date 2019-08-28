@@ -11,7 +11,7 @@ RUN addgroup -S _smtpd && \
 
 RUN apk -U add --virtual deps curl \
 		gcc g++ fts-dev \
-		libasr-dev libressl-dev \
+		libasr-dev openssl-dev \
 		libevent-dev zlib-dev make \
 		bison && \
 	apk add libevent libasr fts  && \
