@@ -11,10 +11,10 @@ RUN addgroup -S _smtpd && \
 
 RUN apk -U add --virtual deps curl \
 		gcc g++ fts-dev \
-		libasr-dev libressl-dev \
+		libasr-dev openssl-dev \
 		libevent-dev zlib-dev make \
 		bison && \
-	apk add libevent libasr fts libressl  && \
+	apk add libevent libasr fts openssl  && \
 	cd ~ && \
 	curl --remote-name https://www.opensmtpd.org/archives/opensmtpd-$SMTPD_VER.tar.gz && \
 	tar xf opensmtpd-$SMTPD_VER.tar.gz && \
