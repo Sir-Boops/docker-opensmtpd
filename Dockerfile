@@ -19,7 +19,7 @@ RUN apk -U add --virtual deps curl \
 	curl --remote-name https://www.opensmtpd.org/archives/opensmtpd-$SMTPD_VER.tar.gz && \
 	tar xf opensmtpd-$SMTPD_VER.tar.gz && \
 	cd ~/opensmtpd-$SMTPD_VER && \
-	sed -e '220d' smtpd/mail.lmtp.c && \
+	sed -i '220d' smtpd/mail.lmtp.c && \
 	./configure --prefix=/opt/opensmtpd \
 		--with-path-queue=/opt/opensmtpd/queue && \
 	make -j$(nproc) && \
