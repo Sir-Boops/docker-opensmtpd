@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-ENV SMTPD_VER="6.6.2p1"
+ENV SMTPD_VER="6.6.3p1"
 
 RUN addgroup -S _smtpd && \
 	adduser -S -u 991 -G _smtpd _smtpd && \
@@ -26,5 +26,7 @@ RUN apk -U add --virtual deps curl \
 	apk del --purge deps && \
 	mkdir -p /var/run && \
 	rm -rf ~/* && rm -rf /opt/opensmtpd/etc/
+
+ENV PATH=${PATH}:/opt/opensmtpd/sbin:/opt/opensmtpd/bin
 
 CMD /opt/opensmtpd/sbin/smtpd -d
