@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-ENV SMTPD_VER="6.6.3p1"
+ENV SMTPD_VER="6.6.4p1"
 
 RUN addgroup -S _smtpd && \
 	adduser -S -u 991 -G _smtpd _smtpd && \
